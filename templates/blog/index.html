@@ -13,6 +13,9 @@
       <a href="#">Read More</a>
       <hr>
   </div>
+  <div>
+    {{ post.content|safe }} 
+  </div>
   {% endfor %}
 </div>
 {% endblock %}
