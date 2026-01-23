@@ -1,4 +1,4 @@
-{% extend "base.html" %}
+{% extends "base.html" %}
 {% load blog_extras %}
 {% block content %}
 <h2>{{ post.title }}</h2>
@@ -11,5 +11,11 @@
   <div class="col">
     {{ post.content|safe }}  <!-- ini tidak cocok diproduction, bisa make Bleach-->
   </div>
+{% endrow %}
+
+{% row %}
+  {% col %}
+    {% recent_posts post%}
+  {% endcol %}
 {% endrow %}
 {% endblock %}
