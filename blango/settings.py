@@ -25,10 +25,9 @@ class Dev(Configuration):
     SECRET_KEY = 'django-insecure-+sn%dpa!086+g+%44z9*^j^q-u4n!j(#wl)x9a%_1op@zz2+1-'
 
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
+    DEBUG = values.BooleanValue(True)
 
-    ALLOWED_HOSTS = ['*']
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
     CSRF_COOKIE_SAMESITE = None
     CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io']
@@ -138,3 +137,9 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+class Prod(Dev):
+  DEBUG=False
+  SECRET_KEY= values.SecretValue()
+  
